@@ -8,6 +8,7 @@ const Sidebar = lazy(() => import("./components/Sidebar/Sidebar"));
 const CaioProfile = lazy(() => import("./components/Home/Home"));
 const About = lazy(() => import("./components/Sobre/Sobre"));
 const Habilidades = lazy(() => import("./components/Skills/Skills"));
+const Projetos = lazy(() => import("./components/Projects/Projects"));
 
 function App() {
   return (
@@ -21,16 +22,22 @@ function App() {
           }}
         >
           <Sidebar />
+
           <section id="home">
             <CaioProfile />
           </section>
         </Box>
+
         <section id="sobre">
           <About />
         </section>
 
         <section id="habilidades">
           <Habilidades />
+        </section>
+
+        <section id="projetos">
+          <Projetos />
         </section>
       </ThemeSwitcher>
     </Suspense>

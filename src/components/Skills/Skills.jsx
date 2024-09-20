@@ -5,6 +5,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Typography from "@mui/material/Typography";
 
 const habilidades = [
   { nome: "Tableau", imgSrc: "tableau.svg" },
@@ -98,6 +99,18 @@ const Habilidades = () => {
       }}
     >
       <Container maxWidth="md">
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            color: theme.palette.text.primary,
+            marginTop: 4,
+          }}
+        >
+          Habilidades
+        </Typography>
+
         <Box
           sx={{
             width: "100%",

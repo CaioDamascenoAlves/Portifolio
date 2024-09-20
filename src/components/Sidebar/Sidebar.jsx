@@ -15,6 +15,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import MenuIcon from "@mui/icons-material/Menu";
 import InfoIcon from "@mui/icons-material/Info";
+import BuildIcon from '@mui/icons-material/Build';
 
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
@@ -57,7 +58,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("habilidades")}>
             <ListItemIcon>
-              <InfoIcon />
+              <BuildIcon />
             </ListItemIcon>
             <ListItemText primary="Habilidades" />
           </ListItemButton>
