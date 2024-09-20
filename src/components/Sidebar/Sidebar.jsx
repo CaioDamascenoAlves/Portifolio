@@ -23,15 +23,23 @@ export default function Sidebar() {
     setOpen(newOpen);
   };
 
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setOpen(false);
+    }
+  };
+
   const DrawerList = (
     <Box
-      sx={{ width: 250, paddingTop: 8 }}
+      sx={{ width: 180, paddingTop: 8 }}
       role="presentation"
       onClick={toggleDrawer(false)}
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => scrollToSection("home")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -39,7 +47,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => scrollToSection("sobre")}>
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
@@ -47,7 +55,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => scrollToSection("projetos")}>
             <ListItemIcon>
               <WorkIcon />
             </ListItemIcon>
@@ -55,7 +63,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => scrollToSection("contato")}>
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
@@ -64,7 +72,6 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <Divider />
-      <List></List>
     </Box>
   );
 

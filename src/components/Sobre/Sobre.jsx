@@ -1,194 +1,75 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  IconButton,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import GitHub from "@mui/icons-material/GitHub";
-import LinkedIn from "@mui/icons-material/LinkedIn";
-import Facebook from "@mui/icons-material/Facebook";
-import TypingEffect from "react-typing-effect";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  solarizedlight,
-  dracula,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useTheme } from "@mui/material/styles";
+import { Grid, Typography, Box, Avatar, useTheme } from "@mui/material";
 
-const ColoredTypography = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-}));
-
-const CodePaper = styled(Paper)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "light"
-      ? theme.palette.grey[100]
-      : theme.palette.grey[900],
-  padding: theme.spacing(2),
-  color:
-    theme.palette.mode === "light"
-      ? theme.palette.text.primary
-      : theme.palette.common.white,
-  fontFamily: "monospace",
-  fontSize: "0.85rem",
-  whiteSpace: "pre-wrap",
-  wordBreak: "break-all",
-}));
-
-const CaioProfile = () => {
-  const theme = useTheme(); // Usando o hook useTheme para acessar o tema
-
-  const desenvolvedor = {
-    nome: "Caio Damasceno Alves",
-    habilidades: [
-      "Tableau",
-      "Power BI",
-      "Python",
-      "NodeJS",
-      "Docker",
-      "SGBD's Relacionais e NoSQL",
-      "CI/CD",
-      "Testes Automatizados",
-    ],
-    trabalhadorDedicado: true,
-    aprendizadoRapido: true,
-    resolvedorProblemas: true,
-    contratado: function () {
-      return (
-        this.trabalhadorDedicado &&
-        this.resolvedorProblemas &&
-        this.habilidades.length >= 5
-      );
-    },
-  };
-
-  const codeString = `const desenvolvedor = {
-  nome: '${desenvolvedor.nome}',
-  habilidades: ${JSON.stringify(desenvolvedor.habilidades, null, 2)},
-  trabalhadorDedicado: ${desenvolvedor.trabalhadorDedicado},
-  aprendizadoRapido: ${desenvolvedor.aprendizadoRapido},
-  resolvedorProblemas: ${desenvolvedor.resolvedorProblemas},
-  contratado: function() {
-    return (
-      this.trabalhadorDedicado &&
-      this.resolvedorDeProblemas
-    );
-  }
-};`;
+const About = () => {
+  // Usando o hook useTheme para acessar o tema atual
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        px: 4, // padding horizontal
-        py: 4, // padding vertical
+        flexGrow: 1,
+        p: 4,
+        bgcolor: theme.palette.background.default,
+        color: theme.palette.text.primary,
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={4} alignItems="flex-start">
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h2"
-              component="h1"
-              gutterBottom
-              sx={{
-                fontSize: { xs: "2.5rem", sm: "3rem" },
-                color: "text.primary",
-              }}
-            >
-              Olá,
-            </Typography>
-            <Typography
-              variant="h1"
-              component="h2"
-              gutterBottom
-              sx={{
-                fontSize: { xs: "2rem", sm: "3rem" },
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Eu sou{" "}
-              <ColoredTypography
-                component="span"
-                sx={{
-                  fontSize: { xs: "2.5rem", sm: "3.5rem" },
-                  color: "text.primary",
-                }}
-              >
-                CAIO DAMASCENO
-              </ColoredTypography>
-              ,
-            </Typography>
+      <Grid container spacing={4}>
+        {/* Coluna do texto, alinhada com o componente anterior */}
+        <Grid
+          item
+          xs={12}
+          md={7.5}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
+          <Box sx={{ width: "100%", maxWidth: 600 }}>
+            {" "}
+            {/* Limite de largura */}
             <Typography
               variant="h4"
-              component="h3"
+              component="h1"
               gutterBottom
-              sx={{
-                fontSize: { xs: "1.5rem", sm: "2rem" },
-                color: "text.primary",
-              }}
+              sx={{ color: theme.palette.text.primary }}
             >
-              <TypingEffect
-                text={[
-                  "Analista de Dados",
-                  "Desenvolvedor de Dados",
-                  "Analista de Sistemas",
-                  "Engenheiro de Dados e Sistemas",
-                ]}
-                speed={50}
-                eraseSpeed={50}
-                eraseDelay={1000}
-                typingDelay={500}
-                cursorRenderer={(cursor) => <>{cursor}</>}
-                displayTextRenderer={(text, i) => <>{text}</>}
-              />
+              Sobre mim
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <CodePaper elevation={6}>
-              <SyntaxHighlighter
-                language="javascript"
-                style={
-                  theme.palette.mode === "light" ? solarizedlight : dracula
-                }
-              >
-                {codeString}
-              </SyntaxHighlighter>
-            </CodePaper>
-          </Grid>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ color: theme.palette.text.secondary }}
+            >
+              Oi! Eu sou o Caio Damasceno Alves, quase formando em Sistemas de
+              Informação pela UFOP. Tenho mais de 3 anos de experiência na área
+              de desenvolvimento de software e dados. Adoro resolver problemas e
+              sempre estou em busca de novas soluções. Também acredito muito na
+              importância de manter boas relações e trabalhar em equipe.
+            </Typography>
+          </Box>
         </Grid>
 
-        {/* Redes sociais e botões */}
-        <Box sx={{ my: 4, textAlign: "center" }}>
-          <Box sx={{ mb: 4 }}>
-            {[GitHub, LinkedIn, Facebook].map((Icon, index) => (
-              <IconButton key={index} color="primary" sx={{ mx: 1 }}>
-                <Icon />
-              </IconButton>
-            ))}
-          </Box>
-
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-            <Button variant="outlined" color="primary">
-              ENTRE EM CONTATO
-            </Button>
-            <Button variant="contained" color="primary">
-              BAIXAR CURRÍCULO
-            </Button>
-          </Box>
-        </Box>
-      </Container>
+        {/* Coluna da foto */}
+        <Grid
+          item
+          xs={12}
+          md={2}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Avatar
+            alt="Caio Damasceno Alves"
+            src="file.png"
+            sx={{
+              width: 200,
+              height: 200,
+              border: `4px solid ${theme.palette.primary.main}`,
+              borderRadius: "16px",
+            }}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
 };
 
-export default CaioProfile;
+export default About;

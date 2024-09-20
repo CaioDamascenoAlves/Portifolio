@@ -20,6 +20,9 @@ importers:
       '@mui/material':
         specifier: ^6.1.1
         version: 6.1.1(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      portifolio:
+        specifier: 'file:'
+        version: file:(@types/react@18.3.7)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1465,6 +1468,9 @@ packages:
   pkg-dir@4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
+
+  'portifolio@file:':
+    resolution: {directory: '', type: directory}
 
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
@@ -3311,6 +3317,22 @@ snapshots:
   pkg-dir@4.2.0:
     dependencies:
       find-up: 4.1.0
+
+  portifolio@file:(@types/react@18.3.7):
+    dependencies:
+      '@emotion/react': 11.13.3(@types/react@18.3.7)(react@18.3.1)
+      '@emotion/styled': 11.13.0(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react@18.3.1)
+      '@mui/icons-material': 6.1.1(@mui/material@6.1.1(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.7)(react@18.3.1)
+      '@mui/material': 6.1.1(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react@18.3.1))(@types/react@18.3.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-syntax-highlighter: 15.5.0(react@18.3.1)
+      react-typed: 2.0.12(react@18.3.1)
+      react-typing-effect: 2.0.5
+    transitivePeerDependencies:
+      - '@mui/material-pigment-css'
+      - '@types/react'
+      - supports-color
 
   possible-typed-array-names@1.0.0: {}
 
