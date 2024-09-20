@@ -12,6 +12,7 @@ const About = () => {
         p: 4,
         bgcolor: theme.palette.background.default,
         color: theme.palette.text.primary,
+        borderTop: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Grid container spacing={4}>

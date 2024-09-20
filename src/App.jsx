@@ -7,6 +7,7 @@ const ThemeSwitcher = lazy(() => import("./components/Theme/ThemeSwitcher"));
 const Sidebar = lazy(() => import("./components/Sidebar/Sidebar"));
 const CaioProfile = lazy(() => import("./components/Home/Home"));
 const About = lazy(() => import("./components/Sobre/Sobre"));
+const Habilidades = lazy(() => import("./components/Skills/Skills"));
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
         </Box>
         <section id="sobre">
           <About />
+        </section>
+
+        <section id="habilidades">
+          <Habilidades />
         </section>
       </ThemeSwitcher>
     </Suspense>
