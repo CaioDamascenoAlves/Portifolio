@@ -23,22 +23,39 @@ const habilidades = [
   { nome: "Vue", imgSrc: "vue.svg" },
   { nome: "Express", imgSrc: "express.svg" },
   { nome: "Swagger", imgSrc: "swagger.svg" },
-  { nome: "docker-compose", imgSrc: "docker-compose.svg" },
   { nome: "Mui", imgSrc: "mui.svg" },
   { nome: "Bootstrap", imgSrc: "bootstrap.svg" },
   { nome: "Axios", imgSrc: "axios.svg" },
   { nome: "Nginx", imgSrc: "nginx.svg" },
 ];
 
-const IconContainer = styled(Box)({
+// Caixa responsiva ao tema para "envelopar" o ícone
+const IconWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  width: "80px", // Ajuste conforme necessário
+  height: "80px",
+  borderRadius: "10px",
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[1],
+  border: `1px solid ${theme.palette.primary.main}`,
   padding: "10px",
-  img: {
-    width: "50px",
+  transition: "all 0.3s ease",
+  "& img": {
+    width: "50px", // Definição de tamanho do ícone SVG
     height: "50px",
+    objectFit: "contain", // Garante que o SVG não ultrapasse os limites
   },
+  "&:hover": {
+    boxShadow: theme.shadows[4],
+  },
+}));
+
+const IconContainer = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 const StyledSlider = styled(Slider)(({ theme }) => ({
@@ -119,8 +136,17 @@ const Habilidades = () => {
           <StyledSlider ref={sliderRef} {...settings}>
             {habilidades.map((habilidade, index) => (
               <IconContainer key={index}>
-                <img src={habilidade.imgSrc} alt={habilidade.nome} />
-                <Typography variant="caption" align="center">
+                <IconWrapper>
+                  <img src={habilidade.imgSrc} alt={habilidade.nome} />
+                </IconWrapper>
+                <Typography
+                  variant="caption"
+                  align="center"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    marginTop: 1
+                  }}
+                >
                   {habilidade.nome}
                 </Typography>
               </IconContainer>

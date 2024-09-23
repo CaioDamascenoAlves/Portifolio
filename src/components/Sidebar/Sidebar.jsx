@@ -8,17 +8,18 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
-
+import { useTheme } from "@mui/material/styles";
 // Importando ícones específicos
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import MenuIcon from "@mui/icons-material/Menu";
 import InfoIcon from "@mui/icons-material/Info";
-import BuildIcon from '@mui/icons-material/Build';
+import BuildIcon from "@mui/icons-material/Build";
 
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -32,6 +33,8 @@ export default function Sidebar() {
     }
   };
 
+  const iconStyle = { color: theme.palette.text.primary }; // Responsividade do tema
+
   const DrawerList = (
     <Box
       sx={{ width: 180, paddingTop: 8 }}
@@ -42,7 +45,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("home")}>
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItemButton>
@@ -50,7 +53,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("sobre")}>
             <ListItemIcon>
-              <InfoIcon />
+              <InfoIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Sobre" />
           </ListItemButton>
@@ -58,7 +61,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("habilidades")}>
             <ListItemIcon>
-              <BuildIcon />
+              <BuildIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Habilidades" />
           </ListItemButton>
@@ -66,7 +69,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("projetos")}>
             <ListItemIcon>
-              <WorkIcon />
+              <WorkIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Projetos" />
           </ListItemButton>
@@ -74,7 +77,7 @@ export default function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton onClick={() => scrollToSection("contato")}>
             <ListItemIcon>
-              <ContactMailIcon />
+              <ContactMailIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Contato" />
           </ListItemButton>

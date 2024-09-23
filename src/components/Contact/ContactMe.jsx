@@ -13,7 +13,7 @@ import {
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import LoadingSpinner from "../Loading/LottiContact" // Componente do spinner
+import LoadingSpinner from "../Animation/LottiContact" // Componente do spinner
 
 const ContactMe = () => {
   const theme = useTheme();
@@ -85,6 +85,7 @@ const ContactMe = () => {
         color: theme.palette.text.primary,
         padding: theme.spacing(4),
         borderTop: `1px solid ${theme.palette.divider}`,
+        px: 6,
       }}
     >
       <Grid container spacing={4}>
@@ -198,6 +199,7 @@ const ContactMe = () => {
               variant="contained"
               color="primary"
               sx={{ mt: 2 }}
+              fullWidth={true}
             >
               Enviar
             </Button>

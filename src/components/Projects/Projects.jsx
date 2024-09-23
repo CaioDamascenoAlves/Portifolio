@@ -38,6 +38,7 @@ const ProjectCard = ({ project }) => {
         borderRadius: "8px",
         overflow: "hidden",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        border: `1px solid ${theme.palette.primary.main}`,
       }}
     >
       <Box
@@ -157,7 +158,8 @@ const Projects = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",
+          width: "100%",  
+          
         }}
       >
         {projectsData.map((project, index) => (

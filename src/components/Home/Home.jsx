@@ -29,7 +29,7 @@ const CodePaper = styled(Paper)(({ theme }) => ({
     theme.palette.mode === "light"
       ? theme.palette.grey[100]
       : theme.palette.grey[900],
-  padding: theme.spacing(2),
+  padding: theme.spacing(1),
   color:
     theme.palette.mode === "light"
       ? theme.palette.text.primary
@@ -38,6 +38,7 @@ const CodePaper = styled(Paper)(({ theme }) => ({
   fontSize: "0.85rem",
   whiteSpace: "pre-wrap",
   wordBreak: "break-all",
+  border: `1px solid ${theme.palette.primary.main}`,
 }));
 
 const CaioProfile = () => {
@@ -59,11 +60,7 @@ const CaioProfile = () => {
     aprendizadoRapido: true,
     resolvedorProblemas: true,
     contratado: function () {
-      return (
-        this.trabalhadorDedicado &&
-        this.resolvedorProblemas &&
-        this.habilidades.length >= 5
-      );
+      return this.trabalhadorDedicado && this.resolvedorProblemas;
     },
   };
 
@@ -88,8 +85,8 @@ const CaioProfile = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        px: 4, // padding horizontal
-        py: 4, // padding vertical
+        px: 4, 
+        py: 4,
       }}
     >
       <Container maxWidth="lg">
