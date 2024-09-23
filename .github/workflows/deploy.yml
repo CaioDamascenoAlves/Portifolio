@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ou 'master', conforme o seu branch principal
+      - main
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Altere conforme necessário
+          node-version: '20'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -27,13 +27,15 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Configure Git
+      - name: Set up SSH
         run: |
-          git config --global user.name "CaioDamascenoAlves"
-          git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ACTIONS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use o token padrão do GitHub
         run: |
-          npx gh-pages -d dist  # Usa gh-pages diretamente
+          npx gh-pages -d dist -m "Deploying to GitHub Pages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
