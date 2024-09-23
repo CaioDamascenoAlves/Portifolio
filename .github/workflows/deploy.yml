@@ -2,6 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
+    branches:
+      - main 
     tags:
       - 'v*'  # Isso irá acionar o deploy apenas quando você fizer push de uma tag que comece com 'v'
 
