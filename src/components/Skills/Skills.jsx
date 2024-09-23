@@ -13,14 +13,21 @@ const habilidades = [
   { nome: "Python", imgSrc: "python.svg" },
   { nome: "NodeJS", imgSrc: "nodejs.svg" },
   { nome: "Docker", imgSrc: "docker.svg" },
-  { nome: "CI/CD", imgSrc: "cicd.svg" },
+  { nome: "GitHub Actions", imgSrc: "cicd.svg" },
   { nome: "PostgreSQL", imgSrc: "postgre.svg" },
   { nome: "MongoDB", imgSrc: "mongodb.svg" },
   { nome: "Puppeteer", imgSrc: "puppeteer.svg" },
   { nome: "Jest", imgSrc: "jest.svg" },
   { nome: "React", imgSrc: "react.svg" },
-  { nome: "PowerAutomate", imgSrc: "pwauto.svg" },
+  { nome: "Power Automate", imgSrc: "pwauto.svg" },
   { nome: "Vue", imgSrc: "vue.svg" },
+  { nome: "Express", imgSrc: "express.svg" },
+  { nome: "Swagger", imgSrc: "swagger.svg" },
+  { nome: "docker-compose", imgSrc: "docker-compose.svg" },
+  { nome: "Mui", imgSrc: "mui.svg" },
+  { nome: "Bootstrap", imgSrc: "bootstrap.svg" },
+  { nome: "Axios", imgSrc: "axios.svg" },
+  { nome: "Nginx", imgSrc: "nginx.svg" },
 ];
 
 const IconContainer = styled(Box)({
@@ -103,25 +110,19 @@ const Habilidades = () => {
           variant="h4"
           align="center"
           gutterBottom
-          sx={{
-            color: theme.palette.text.primary,
-            marginTop: 4,
-          }}
+          sx={{ color: theme.palette.text.primary, marginTop: 4 }}
         >
           Habilidades
         </Typography>
 
-        <Box
-          sx={{
-            width: "100%",
-            overflow: "hidden",
-            py: 4,
-          }}
-        >
+        <Box sx={{ width: "100%", overflow: "hidden", py: 4 }}>
           <StyledSlider ref={sliderRef} {...settings}>
             {habilidades.map((habilidade, index) => (
               <IconContainer key={index}>
                 <img src={habilidade.imgSrc} alt={habilidade.nome} />
+                <Typography variant="caption" align="center">
+                  {habilidade.nome}
+                </Typography>
               </IconContainer>
             ))}
           </StyledSlider>

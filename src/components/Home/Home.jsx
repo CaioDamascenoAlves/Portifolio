@@ -167,23 +167,44 @@ const CaioProfile = () => {
           </Grid>
         </Grid>
 
-        {/* Redes sociais e botões */}
         <Box sx={{ my: 4, textAlign: "center" }}>
           <Box sx={{ mb: 4 }}>
-            {[GitHub, LinkedIn, Facebook].map((Icon, index) => (
-              <IconButton key={index} color="primary" sx={{ mx: 1 }}>
-                <Icon />
+            {[
+              { Icon: GitHub, link: "https://github.com/CaioDamascenoAlves" },
+              {
+                Icon: LinkedIn,
+                link: "https://www.linkedin.com/in/caio-alves-45684214a/",
+              },
+              {
+                Icon: Facebook,
+                link: "https://www.facebook.com/caio.alves.1840?locale=pt_BR",
+              },
+            ].map((item, index) => (
+              <IconButton
+                key={index}
+                color="primary"
+                sx={{ mx: 1 }}
+                component="a"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <item.Icon />
               </IconButton>
             ))}
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-            <Button variant="outlined" color="primary">
-              ENTRE EM CONTATO
-            </Button>
-            <Button variant="contained" color="primary">
-              BAIXAR CURRÍCULO
-            </Button>
+            <a href="#contato">
+              <Button variant="outlined" color="primary">
+                ENTRE EM CONTATO
+              </Button>
+            </a>
+            <a href="Profile.pdf" download>
+              <Button variant="contained" color="primary">
+                BAIXAR CURRÍCULO
+              </Button>
+            </a>
           </Box>
         </Box>
       </Container>

@@ -139,8 +139,8 @@ const Projects = () => {
         minHeight: "80vh",
         bgcolor: theme.palette.background.default,
         color: theme.palette.text.primary,
-        borderTop: `1px solid ${theme.palette.divider}`,
         padding: 2,
+        borderTop: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Typography

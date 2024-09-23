@@ -39,11 +39,12 @@ const About = () => {
               paragraph
               sx={{ color: theme.palette.text.secondary }}
             >
-              Oi! Eu sou o Caio Damasceno Alves, quase formando em Sistemas de
-              Informação pela UFOP. Tenho mais de 3 anos de experiência na área
-              de desenvolvimento de software e dados. Adoro resolver problemas e
-              sempre estou em busca de novas soluções. Também acredito muito na
-              importância de manter boas relações e trabalhar em equipe.
+              Olá! Sou Caio Damasceno Alves, quase bacharel em Sistemas de
+              Informação pela UFOP. Com mais de 3 anos de experiência em
+              desenvolvimento de software e dados, foco em resolver problemas e
+              vejo cada desafio como uma oportunidade de crescimento rumo à
+              senioridade. Também valorizo o trabalho em equipe e boas relações,
+              que considero essenciais para o sucesso em qualquer projeto.
             </Typography>
           </Box>
         </Grid>
@@ -52,7 +53,7 @@ const About = () => {
         <Grid
           item
           xs={12}
-          md={2}
+          md={3}
           display="flex"
           justifyContent="center"
           alignItems="center"

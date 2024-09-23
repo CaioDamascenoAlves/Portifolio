@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Box } from "@mui/material";
-import LoadingSpinner from "./components/Spinner/LoadingSpinner";
+import LoadingSpinner from "./components/Loading/LottiWalking";
 import "./App.css";
 
 const ThemeSwitcher = lazy(() => import("./components/Theme/ThemeSwitcher"));
@@ -8,7 +8,8 @@ const Sidebar = lazy(() => import("./components/Sidebar/Sidebar"));
 const CaioProfile = lazy(() => import("./components/Home/Home"));
 const About = lazy(() => import("./components/Sobre/Sobre"));
 const Habilidades = lazy(() => import("./components/Skills/Skills"));
-const Projetos = lazy(() => import("./components/Projects/Projects"));
+const Projects = lazy(() => import("./components/Projects/Projects"));
+const Contact = lazy(() => import("./components/Contact/ContactMe"));
 
 function App() {
   return (
@@ -37,7 +38,11 @@ function App() {
         </section>
 
         <section id="projetos">
-          <Projetos />
+          <Projects />
+        </section>
+
+        <section id="contato">
+          <Contact />
         </section>
       </ThemeSwitcher>
     </Suspense>
