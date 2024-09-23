@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # ou 'master'
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '18'  # Altere conforme necessário
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -33,6 +33,11 @@ jobs:
           echo "${{ secrets.ACTIONS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "CaioDamascenoAlves"
+          git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
 
       - name: Deploy
         run: |
