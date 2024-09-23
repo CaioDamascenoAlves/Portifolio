@@ -27,16 +27,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.ACTIONS_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
       - name: Configure Git
         run: |
-          git config --global user.name "Caio Damasceno Alves"
+          git config --global user.name "CaioDamascenoAlves"
           git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
 
       - name: Deploy
