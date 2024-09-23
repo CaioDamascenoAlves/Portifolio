@@ -29,12 +29,11 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Caio Damasceno Alves"
+          git config --global user.name "CaioDamascenoAlves"
           git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
 
       - name: Deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Acesso ao token aqui
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: |
-          pnpm add gh-pages --save-dev  # Instala gh-pages como dependência de desenvolvimento
           npx gh-pages -d dist  # Usa gh-pages diretamente
