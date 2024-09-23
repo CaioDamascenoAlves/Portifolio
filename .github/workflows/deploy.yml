@@ -34,6 +34,6 @@ jobs:
 
       - name: Deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use o token padrão do GitHub
         run: |
           npx gh-pages -d dist  # Usa gh-pages diretamente
