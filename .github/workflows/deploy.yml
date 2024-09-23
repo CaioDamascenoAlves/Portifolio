@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # ou 'master', conforme o seu branch principal
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20' 
+          node-version: '18'  # Altere conforme necessário
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -27,9 +27,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "CaioDamascenoAlves"
+          git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
+
       - name: Deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Acesso ao token aqui
         run: |
           pnpm add gh-pages --save-dev  # Instala gh-pages como dependência de desenvolvimento
           npx gh-pages -d dist  # Usa gh-pages diretamente
