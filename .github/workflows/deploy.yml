@@ -16,21 +16,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'  
-
-      - name: Install pnpm
-        run: npm install -g pnpm
+          node-version: '18'  # Altere conforme necessário
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build
-        run: pnpm run build
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "caio.damasceno@aluno.fuop.edu.br"
+        run: npm run build
 
       - name: Deploy
-        run: pnpm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.PORTIFOLIO_SECRET }}  # Usa o token para autenticar o push
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "your-email@example.com"
+          npm run deploy
