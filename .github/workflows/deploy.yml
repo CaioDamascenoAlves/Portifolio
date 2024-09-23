@@ -31,6 +31,7 @@ jobs:
         run: |
           git config --global user.name "CaioDamascenoAlves"
           git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/CaioDamascenoAlves/Portifolio.git
 
       - name: Deploy
         run: |
