@@ -16,10 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Altere conforme necessário
+          node-version: '20'  # Altere conforme necessário
 
       - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Set up PNPM_HOME
+        run: echo "PNPM_HOME=$(pnpm env get global-bin)" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: pnpm install
