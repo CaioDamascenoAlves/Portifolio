@@ -5,6 +5,9 @@ on:
     branches:
       - main  # ou 'master'
 
+permissions:
+  contents: write  # Isso garante que o GitHub Actions tenha permissão para fazer o push
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Altere conforme necessário
+          node-version: '18'
 
       - name: Install pnpm
         run: npm install -g pnpm
