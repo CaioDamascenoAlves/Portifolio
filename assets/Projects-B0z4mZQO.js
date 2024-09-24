@@ -1,4 +1,4 @@
-import{j as e}from"./vendor-m3-a0wTa.js";import{b as d,B as t,k as x}from"./mui-YFYD40Ll.js";import{d as i,s as n,h as c}from"./syntax-highlighter-BoAaY44r.js";const m=({project:o})=>{const r=d(),s=r.palette.mode==="dark",a={...s?i:n,'pre[class*="language-"]':{...(s?i:n)['pre[class*="language-"]'],background:s?"#0d1117":"#f6f8fa",margin:0,padding:"16px",borderRadius:"0 0 8px 8px"}},l=`const Projeto = {
+import{j as e}from"./vendor-BfX6O1qk.js";import{b as d,B as t,k as x}from"./mui-Ch24oHJm.js";import{d as i,s as n,h as c}from"./syntax-highlighter-dBKvzJ80.js";const m=({project:o})=>{const r=d(),s=r.palette.mode==="dark",a={...s?i:n,'pre[class*="language-"]':{...(s?i:n)['pre[class*="language-"]'],background:s?"#0d1117":"#f6f8fa",margin:0,padding:"16px",borderRadius:"0 0 8px 8px"}},l=`const Projeto = {
   Nome: '${o.name}',
   Ferramentas: [${o.tools.map(p=>`'${p}'`).join(", ")}],
   Função: '${o.myRole}',
