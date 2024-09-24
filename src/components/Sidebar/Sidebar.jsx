@@ -76,7 +76,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => scrollToSection("expeciencias")}>
+          <ListItemButton onClick={() => scrollToSection("experiencias")}>
             <ListItemIcon>
               <EngineeringIcon  sx={iconStyle} />
             </ListItemIcon>
