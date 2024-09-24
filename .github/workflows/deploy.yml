@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # ou 'master'
+
+permissions:
+  contents: write  # Isso garante que o GitHub Actions tenha permissão para fazer o push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "CaioDamascenoAlves"
+          git config --global user.email "caio.damasceno@aluno.ufop.edu.br"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/CaioDamascenoAlves/Portifolio.git
+
+      - name: Deploy
+        run: |
+          npx gh-pages -d dist -m "Deploying to GitHub Pages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

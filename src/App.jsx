@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { Box } from "@mui/material";
-import LoadingSpinner from "./components/Loading/LottiWalking";
 import "./App.css";
 
 const ThemeSwitcher = lazy(() => import("./components/Theme/ThemeSwitcher"));
@@ -10,10 +9,12 @@ const About = lazy(() => import("./components/Sobre/Sobre"));
 const Habilidades = lazy(() => import("./components/Skills/Skills"));
 const Projects = lazy(() => import("./components/Projects/Projects"));
 const Contact = lazy(() => import("./components/Contact/ContactMe"));
+const LoadingWalking = lazy(() => import("./components/Animation/LottiWalking"));
+const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton"));
 
 function App() {
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={<LoadingWalking />}>
       <ThemeSwitcher>
         <Box
           sx={{
@@ -44,6 +45,7 @@ function App() {
         <section id="contato">
           <Contact />
         </section>
+        <ScrollToTopButton />
       </ThemeSwitcher>
     </Suspense>
   );
