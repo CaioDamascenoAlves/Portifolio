@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import "./App.css";
 
@@ -14,6 +14,29 @@ const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton"));
 const ExperienceCard = lazy(() => import("./components/Jobs/ExperienceCard"));
 
 function App() {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  const handleScroll = () => {
+    const homeSection = document.getElementById("home");
+    if (!homeSection) return;
+
+    const sectionBottom = homeSection.getBoundingClientRect().bottom;
+
+    // Exibe o botão se o topo da seção Home estiver acima da tela
+    if (sectionBottom < 0) {
+      setShowScrollButton(true);
+    } else {
+      setShowScrollButton(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Suspense fallback={<LoadingWalking />}>
       <ThemeSwitcher>
@@ -29,28 +52,30 @@ function App() {
           <section id="home">
             <CaioProfile />
           </section>
+
+          <section id="sobre">
+            <About />
+          </section>
+
+          <section id="habilidades">
+            <Habilidades />
+          </section>
+
+          <section id="projetos">
+            <Projects />
+          </section>
+
+          <section id="experiencias">
+            <ExperienceCard />
+          </section>
+
+          <section id="contato">
+            <Contact />
+          </section>
+
+          {/* Renderiza o botão apenas se showScrollButton for true */}
+          {showScrollButton && <ScrollToTopButton />}
         </Box>
-
-        <section id="sobre">
-          <About />
-        </section>
-
-        <section id="habilidades">
-          <Habilidades />
-        </section>
-
-        <section id="projetos">
-          <Projects />
-        </section>
-
-        <section id="experiencias">
-          <ExperienceCard />
-        </section>
-
-        <section id="contato">
-          <Contact />
-        </section>
-        <ScrollToTopButton />
       </ThemeSwitcher>
     </Suspense>
   );
