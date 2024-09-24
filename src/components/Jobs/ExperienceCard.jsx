@@ -29,7 +29,7 @@ const experiences = [
     company: "Grupo Belmont",
     position: "Auxiliar Administrativo",
     duration: "Janeiro de 2017 - agosto de 2018 (1 ano e 6 meses)",
-  }
+  },
 ];
 
 const ExperienceCard = () => {

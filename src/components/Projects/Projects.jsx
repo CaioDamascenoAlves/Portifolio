@@ -34,7 +34,7 @@ const ProjectCard = ({ project }) => {
       sx={{
         width: "100%",
         maxWidth: "600px",
-        margin: "0 auto",
+        margin: "16px 0", // Adiciona espaço vertical entre os cards
         borderRadius: "8px",
         overflow: "hidden",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -129,6 +129,42 @@ const Projects = () => {
       Description:
         "Desenvolvimento de um sistema web para coleta de preços de combustíveis públicos. E Scraping de dados de site de venda de combustíveis.",
     },
+    {
+      name: "Projeto de DataWareHouse para Analise de Combustiveis",
+      tools: ["Tableau", "Postgres", "NodeJS", "Express", "Swagger", "Query Strem", "Puppeteer", "Cron"],
+      myRole: "Desenvolvimento Backend",
+      Description:
+        "Estruturação de um Pipeline de Dados para coleta de dados de combustíveis e criação de DW para analise de dados.",
+    },
+    {
+      name: "KPIs de Combustiveis",
+      tools: ["Tableau", "PostgreSQL"],
+      myRole: "Analise e Desenvolvimento de BI",
+      Description:
+        "Consumo do DataWareHouse para criação de KPIs de combustíveis em Tableau",
+    },
+    {
+      name: "KPI de Meta de Vendas Mensais | RG Pneus",
+      tools: ["Tableau", "Excel", "Microsoft SQL Server"],
+      myRole: "Analise e Desenvolvimento de BI",
+      Description:
+        "Junção de Base de Dados de Vendas e Metas de Vendas em Excel para criação de painel de metas de vendas mensais.",
+    },
+    {
+      name: "KPI de Meta de Vendas Mensais | Lubrificantes Longana",
+      tools: ["Tableau", "Excel", "Microsoft SQL Server"],
+      myRole: "Analise e Desenvolvimento de BI",
+      Description:
+        "Junção de Base de Dados de Vendas e Metas de Vendas em Excel para criação de painel de metas de vendas mensais.",
+    },
+    {
+      name: "Painel de RH",
+      tools: ["Tableau", "Excel", "Microsoft SQL Server"],
+      myRole: "Analise e Desenvolvimento de BI",
+      Description:
+        "Criação de painel de RH para acompanhamento de indicadores de RH.",
+    },
+    
   ];
 
   return (
@@ -155,7 +191,7 @@ const Projects = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column", // Mudei para empilhar os cards
           alignItems: "center",
           width: "100%",
         }}

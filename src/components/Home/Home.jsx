@@ -36,23 +36,37 @@ const CodePaper = styled(Paper)(({ theme }) => ({
       : theme.palette.common.white,
   fontFamily: "monospace",
   fontSize: "0.85rem",
-  whiteSpace: "pre-wrap",
-  wordBreak: "break-all",
+  overflow: "hidden",
+  maxWidth: "100%", // Limita a largura do componente
   border: `1px solid ${theme.palette.primary.main}`,
 }));
 
 const CaioProfile = () => {
-  const theme = useTheme(); // Usando o hook useTheme para acessar o tema
+  const theme = useTheme();
 
   const desenvolvedor = {
     nome: "Caio Damasceno Alves",
     habilidades: [
       "Tableau",
       "Power BI",
-      "Python",
+      "Power Query",
+      "Power Automate",
       "NodeJS",
+      "Express",
+      "Swagger",
+      "Puppeteer",
+      "Jest",
+      "React",
+      "Mui",
+      "Axios",
+      "Vue",
+      "Java",
+      "Python",
+      "PostgreSQL",
+      "MongoDB",
+      "Nginx",
+      "GitHub Actions",
       "Docker",
-      "SGBD's Relacionais e NoSQL",
       "CI/CD",
       "Testes Automatizados",
     ],
@@ -65,18 +79,20 @@ const CaioProfile = () => {
   };
 
   const codeString = `const desenvolvedor = {
-  nome: '${desenvolvedor.nome}',
-  habilidades: ${JSON.stringify(desenvolvedor.habilidades, null, 2)},
-  trabalhadorDedicado: ${desenvolvedor.trabalhadorDedicado},
-  aprendizadoRapido: ${desenvolvedor.aprendizadoRapido},
-  resolvedorProblemas: ${desenvolvedor.resolvedorProblemas},
-  contratado: function() {
-    return (
-      this.trabalhadorDedicado &&
-      this.resolvedorDeProblemas
-    );
-  }
-};`;
+    nome: '${desenvolvedor.nome}',
+    habilidades: [${desenvolvedor.habilidades
+      .map((habilidade) => `'${habilidade}'`)
+      .join(", ")}],
+    trabalhadorDedicado: ${desenvolvedor.trabalhadorDedicado},
+    aprendizadoRapido: ${desenvolvedor.aprendizadoRapido},
+    resolvedorProblemas: ${desenvolvedor.resolvedorProblemas},
+    contratado: function() {
+      return (
+        this.trabalhadorDedicado &&
+        this.resolvedorDeProblemas
+      );
+    }
+  };`;
 
   return (
     <Box
@@ -85,7 +101,7 @@ const CaioProfile = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        px: 4, 
+        px: 4,
         py: 4,
       }}
     >
@@ -157,6 +173,7 @@ const CaioProfile = () => {
                 style={
                   theme.palette.mode === "light" ? solarizedlight : dracula
                 }
+                wrapLongLines={true} // Não quebra linhas longas
               >
                 {codeString}
               </SyntaxHighlighter>
