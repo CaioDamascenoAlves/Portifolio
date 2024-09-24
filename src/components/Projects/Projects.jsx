@@ -137,7 +137,6 @@ const Projects = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minHeight: "80vh",
         bgcolor: theme.palette.background.default,
         color: theme.palette.text.primary,
         padding: 2,
@@ -158,8 +157,7 @@ const Projects = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",  
-          
+          width: "100%",
         }}
       >
         {projectsData.map((project, index) => (

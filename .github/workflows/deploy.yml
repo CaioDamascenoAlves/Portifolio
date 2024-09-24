@@ -3,10 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ou 'master'
+      - main  
 
 permissions:
-  contents: write  # Isso garante que o GitHub Actions tenha permissão para fazer o push
+  contents: write
 
 jobs:
   deploy:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install pnpm
         run: npm install -g pnpm

@@ -16,6 +16,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import MenuIcon from "@mui/icons-material/Menu";
 import InfoIcon from "@mui/icons-material/Info";
 import BuildIcon from "@mui/icons-material/Build";
+import EngineeringIcon   from '@mui/icons-material/Engineering';
 
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
@@ -72,6 +73,14 @@ export default function Sidebar() {
               <WorkIcon sx={iconStyle} />
             </ListItemIcon>
             <ListItemText primary="Projetos" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => scrollToSection("expeciencias")}>
+            <ListItemIcon>
+              <EngineeringIcon  sx={iconStyle} />
+            </ListItemIcon>
+            <ListItemText primary="Experiências" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

@@ -11,6 +11,7 @@ const Projects = lazy(() => import("./components/Projects/Projects"));
 const Contact = lazy(() => import("./components/Contact/ContactMe"));
 const LoadingWalking = lazy(() => import("./components/Animation/LottiWalking"));
 const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton"));
+const ExperienceCard = lazy(() => import("./components/Jobs/ExperienceCard"));
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
 
         <section id="projetos">
           <Projects />
+        </section>
+
+        <section id="experiencias">
+          <ExperienceCard />
         </section>
 
         <section id="contato">
