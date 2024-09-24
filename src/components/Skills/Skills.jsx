@@ -59,7 +59,7 @@ const Habilidades = () => {
 
   const settings = {
     infinite: true,
-    speed: 5000,
+    speed: 2000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
@@ -67,6 +67,8 @@ const Habilidades = () => {
     cssEase: "linear",
     pauseOnHover: false,
     arrows: false,
+    swipeToSlide: true, // Permite melhor interação no mobile
+    touchThreshold: 15, // Ajusta a sensibilidade ao toque no mobile
     responsive: [
       {
         breakpoint: 960,
@@ -120,7 +122,11 @@ const Habilidades = () => {
             {habilidades.map((habilidade, index) => (
               <IconContainer key={index}>
                 <img src={habilidade.imgSrc} alt={habilidade.nome} />
-                <Typography variant="caption" align="center">
+                <Typography
+                  variant="caption"
+                  align="center"
+                  sx={{ color: theme.palette.text.primary }} // Cor responsiva ao tema
+                >
                   {habilidade.nome}
                 </Typography>
               </IconContainer>

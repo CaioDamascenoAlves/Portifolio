@@ -85,6 +85,7 @@ const ContactMe = () => {
         color: theme.palette.text.primary,
         padding: theme.spacing(4),
         borderTop: `1px solid ${theme.palette.divider}`,
+        px: 6,
       }}
     >
       <Grid container spacing={4}>
