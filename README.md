@@ -24,7 +24,17 @@ Certifique-se de ter o pnpm instalado. Para instalar as dependências, rode:
 ```bash
 pnpm install
 ```
-### 3. Rode o projeto localmente:
+### 3. Configure o Formspree:
+Antes de rodar o projeto, você precisa configurar o formulário de contato. Para isso, siga os passos abaixo:
+
+1. [Acesse o site Formspree](https://formspree.io/)
+2. Cadastre-se ou faça login em sua conta.
+3. Crie um formulário e copie o endpoint fornecido.
+4. No arquivo .env, veja o exemplo em .env.exemple, crie uma variável de ambiente VITE_FORMSPREE_URL e cole o endpoint copiado, conforme o exemplo:
+```bash
+VITE_FORMSPREE_URL=https://formspree.io/f/seu-endpoint
+``` 
+### 4. Rode o projeto localmente:
 ```bash
 pnpm run dev
 ```
