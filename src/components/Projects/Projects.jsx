@@ -1,11 +1,13 @@
-import React from "react";
-import { Box, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import { Box, useTheme, IconButton, Typography } from "@mui/material";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   solarizedlight,
   dracula,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Typography from "@mui/material/Typography";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useSwipeable } from "react-swipeable";
 
 const ProjectCard = ({ project }) => {
   const theme = useTheme();
@@ -23,18 +25,18 @@ const ProjectCard = ({ project }) => {
   };
 
   const projectCode = `const Projeto = {
-  Nome: '${project.name}',
-  Ferramentas: [${project.tools.map((tool) => `'${tool}'`).join(", ")}],
-  Função: '${project.myRole}',
-  Descrição: \`${project.Description}\`
-};`;
+    Nome: '${project.name}',
+    Ferramentas: [${project.tools.map((tool) => `'${tool}'`).join(", ")}],
+    Função: '${project.myRole}',
+    Descrição: \`${project.Description}\`
+  };`;
 
   return (
     <Box
       sx={{
         width: "100%",
         maxWidth: "600px",
-        margin: "16px 0", // Adiciona espaço vertical entre os cards
+        margin: "16px 0",
         borderRadius: "8px",
         overflow: "hidden",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -131,7 +133,16 @@ const Projects = () => {
     },
     {
       name: "Projeto de DataWareHouse para Analise de Combustiveis",
-      tools: ["Tableau", "Postgres", "NodeJS", "Express", "Swagger", "Query Strem", "Puppeteer", "Cron"],
+      tools: [
+        "Tableau",
+        "Postgres",
+        "NodeJS",
+        "Express",
+        "Swagger",
+        "Query Strem",
+        "Puppeteer",
+        "Cron",
+      ],
       myRole: "Desenvolvimento Backend",
       Description:
         "Estruturação de um Pipeline de Dados para coleta de dados de combustíveis e criação de DW para analise de dados.",
@@ -164,8 +175,26 @@ const Projects = () => {
       Description:
         "Criação de painel de RH para acompanhamento de indicadores de RH.",
     },
-    
   ];
+
+  const [currentProject, setCurrentProject] = useState(0);
+
+  const handleNext = () => {
+    setCurrentProject((prev) => (prev + 1) % projectsData.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentProject(
+      (prev) => (prev - 1 + projectsData.length) % projectsData.length
+    );
+  };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => handleNext(),
+    onSwipedRight: () => handlePrevious(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   return (
     <Box
@@ -177,29 +206,48 @@ const Projects = () => {
         color: theme.palette.text.primary,
         padding: 2,
         borderTop: `1px solid ${theme.palette.divider}`,
+        position: "relative", // para as setas
       }}
+      {...handlers}
     >
-      <Typography
-        variant="h4"
-        component="h1"
-        sx={{
-          mb: 4,
-        }}
-      >
+      <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
         Projetos
       </Typography>
+
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column", // Mudei para empilhar os cards
+          flexDirection: "column",
           alignItems: "center",
           width: "100%",
         }}
       >
-        {projectsData.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
+        <ProjectCard project={projectsData[currentProject]} />
       </Box>
+
+      {/* Setas para desktop */}
+      <IconButton
+        sx={{
+          position: "absolute",
+          left: "16px",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+        onClick={handlePrevious}
+      >
+        <ArrowBackIosIcon />
+      </IconButton>
+      <IconButton
+        sx={{
+          position: "absolute",
+          right: "16px",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+        onClick={handleNext}
+      >
+        <ArrowForwardIosIcon />
+      </IconButton>
     </Box>
   );
 };
