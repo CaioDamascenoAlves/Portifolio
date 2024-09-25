@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { Box, useTheme, IconButton, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  IconButton,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   solarizedlight,
@@ -8,8 +14,9 @@ import {
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useSwipeable } from "react-swipeable";
+import SwipeIcon from '@mui/icons-material/Swipe';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, style }) => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === "dark";
 
@@ -41,6 +48,8 @@ const ProjectCard = ({ project }) => {
         overflow: "hidden",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         border: `1px solid ${theme.palette.primary.main}`,
+        transition: "transform 0.5s ease-in-out",
+        ...style,
       }}
     >
       <Box
@@ -93,10 +102,6 @@ const ProjectCard = ({ project }) => {
       <SyntaxHighlighter
         language="javascript"
         style={customStyle}
-        customStyle={{
-          fontSize: "14px",
-          lineHeight: "1.5",
-        }}
         wrapLongLines={true}
       >
         {projectCode}
@@ -107,6 +112,29 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showSwipeHint, setShowSwipeHint] = useState(false); // Estado para o tutorial
+
+  useEffect(() => {
+    // Mostrar o tutorial por 3 segundos ao carregar em telas pequenas
+    const handleResize = () => {
+      if (window.innerWidth < theme.breakpoints.values.md) {
+        setShowSwipeHint(true);
+        setTimeout(() => {
+          setShowSwipeHint(false);
+        }, 10000);
+      }
+    };
+    handleResize(); // Verifica o tamanho ao carregar
+    window.addEventListener('resize', handleResize); // Reage a mudanças no tamanho
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [theme.breakpoints.values.md]);
+
+
   const projectsData = [
     {
       name: "Sistema Web para Coleta de Preços de Combustiveis Publicos",
@@ -177,27 +205,24 @@ const Projects = () => {
     },
   ];
 
-  const [currentProject, setCurrentProject] = useState(0);
-
   const handleNext = () => {
-    setCurrentProject((prev) => (prev + 1) % projectsData.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
   };
 
-  const handlePrevious = () => {
-    setCurrentProject(
-      (prev) => (prev - 1 + projectsData.length) % projectsData.length
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
     );
   };
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => handleNext(),
-    onSwipedRight: () => handlePrevious(),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrev,
   });
 
   return (
     <Box
+      {...swipeHandlers}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -206,48 +231,95 @@ const Projects = () => {
         color: theme.palette.text.primary,
         padding: 2,
         borderTop: `1px solid ${theme.palette.divider}`,
-        position: "relative", // para as setas
+        position: "relative",
       }}
-      {...handlers}
     >
       <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
         Projetos
       </Typography>
-
+      {/* Mostrar tutorial no mobile */}
+      {showSwipeHint && (
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "10px",
+            display: { xs: 'flex', md: 'none' },
+            alignItems: "center",
+            justifyContent: "center",
+            bgcolor: theme.palette.background.paper,
+            padding: "8px",
+            borderRadius: "8px",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            border: `1px solid ${theme.palette.primary.main}`,
+          }}
+        >
+        <SwipeIcon sx={{ mr: 1 }} />
+        </Box>
+      )}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          position: "relative",
           width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <ProjectCard project={projectsData[currentProject]} />
+        {/* Botão para anterior, visível apenas no desktop */}
+        <IconButton
+          onClick={handlePrev}
+          sx={{
+            position: "absolute",
+            left: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            display: { xs: "none", md: "flex" }, // Visível apenas a partir de md (desktop)
+            border: `1px solid ${theme.palette.primary.main}`,
+
+          }}
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+
+        {/* Componente do projeto */}
+        <ProjectCard project={projectsData[currentIndex]} />
+
+        {/* Botão para próximo, visível apenas no desktop */}
+        <IconButton
+          onClick={handleNext}
+          sx={{
+            position: "absolute",
+            right: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            display: { xs: "none", md: "flex" }, // Visível apenas a partir de md (desktop)
+            border: `1px solid ${theme.palette.primary.main}`,
+
+          }}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
       </Box>
 
-      {/* Setas para desktop */}
-      <IconButton
-        sx={{
-          position: "absolute",
-          left: "16px",
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-        onClick={handlePrevious}
-      >
-        <ArrowBackIosIcon />
-      </IconButton>
-      <IconButton
-        sx={{
-          position: "absolute",
-          right: "16px",
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-        onClick={handleNext}
-      >
-        <ArrowForwardIosIcon />
-      </IconButton>
+      {showSwipeHint && isMobile && (
+        <Typography
+          sx={{
+            mt: 2,
+            color: theme.palette.text.secondary,
+            animation: "fadeInOut 3s ease-in-out",
+            "@keyframes fadeInOut": {
+              "0%, 100%": { opacity: 0 },
+              "50%": { opacity: 1 },
+            },
+          }}
+        >
+          Deslize para ver os projetos
+        </Typography>
+      )}
     </Box>
   );
 };
