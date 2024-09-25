@@ -13,7 +13,7 @@ import {
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import LoadingSpinner from "../Animation/LottiContact" // Componente do spinner
+import LoadingSpinner from "../Animation/LottiContact"; // Componente do spinner
 
 const ContactMe = () => {
   const theme = useTheme();
@@ -49,7 +49,7 @@ const ContactMe = () => {
     setTimeout(() => setTimeElapsed(true), 3000);
 
     try {
-      const response = await fetch("https://formspree.io/f/xpwagyad", {
+      const response = await fetch(import.meta.env.VITE_FORMSPREE_URL, {
         method: "POST",
         body: data,
         headers: {
