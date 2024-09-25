@@ -30,7 +30,7 @@ Antes de rodar o projeto, você precisa configurar o formulário de contato. Par
 1. [Acesse o site Formspree](https://formspree.io/)
 2. Cadastre-se ou faça login em sua conta.
 3. Crie um formulário e copie o endpoint fornecido.
-4. No arquivo .env, crie uma variável de ambiente VITE_FORMSPREE_URL e cole o endpoint copiado, conforme o exemplo:
+4. No arquivo .env, veja o exemplo em .env.exemple, crie uma variável de ambiente VITE_FORMSPREE_URL e cole o endpoint copiado, conforme o exemplo:
 ```bash
 VITE_FORMSPREE_URL=https://formspree.io/f/seu-endpoint
 ``` 
