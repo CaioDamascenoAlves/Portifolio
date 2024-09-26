@@ -120,7 +120,6 @@ const Projects = () => {
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    // Mostrar o tutorial por 3 segundos ao carregar em telas pequenas
     const handleResize = () => {
       if (window.innerWidth < theme.breakpoints.values.md) {
         setShowSwipeHint(true);
@@ -220,8 +219,8 @@ const Projects = () => {
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: handleNext,
-    onSwipedRight: handlePrev,
+    onSwipedLeft: () => handleNext(), // Mova para o próximo ao deslizar para a esquerda
+    onSwipedRight: () => handlePrev(), // Mova para o anterior ao deslizar para a direita
   });
 
   const slideAnimation = useSpring({
