@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 const ThemeSwitcher = lazy(() => import("./components/Theme/ThemeSwitcher"));
@@ -15,7 +15,7 @@ const LoadingWalking = lazy(() =>
 );
 const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton"));
 const ExperienceCard = lazy(() => import("./components/Jobs/ExperienceCard"));
-const LottiCode = lazy(() => import("./components/Animation/LottiCode")); // Nova rota para animação
+const LottiCode = lazy(() => import("./components/Animation/LottiCode")); // Componente da animação
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -26,6 +26,7 @@ function App() {
 
     const sectionBottom = homeSection.getBoundingClientRect().bottom;
 
+    // Exibe o botão se o topo da seção Home estiver acima da tela
     if (sectionBottom < 0) {
       setShowScrollButton(true);
     } else {
@@ -43,8 +44,9 @@ function App() {
   return (
     <Suspense fallback={<LoadingWalking />}>
       <ThemeSwitcher>
-        <Router basename="/Portifolio">
+        <Router basename="/">
           <Routes>
+            {/* Rota principal do portfólio */}
             <Route
               path="/"
               element={
@@ -56,27 +58,21 @@ function App() {
                   }}
                 >
                   <Sidebar />
-
                   <section id="home">
                     <CaioProfile />
                   </section>
-
                   <section id="sobre">
                     <About />
                   </section>
-
                   <section id="habilidades">
                     <Habilidades />
                   </section>
-
                   <section id="projetos">
                     <Projects />
                   </section>
-
                   <section id="experiencias">
                     <ExperienceCard />
                   </section>
-
                   <section id="contato">
                     <Contact />
                   </section>
@@ -85,8 +81,7 @@ function App() {
                 </Box>
               }
             />
-
-            {/* Nova rota para a página de animação */}
+            {/* Nova rota para a animação */}
             <Route path="/animacao" element={<LottiCode />} />
           </Routes>
         </Router>
