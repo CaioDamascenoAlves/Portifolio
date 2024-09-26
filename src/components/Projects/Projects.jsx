@@ -14,7 +14,8 @@ import {
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useSwipeable } from "react-swipeable";
-import SwipeIcon from '@mui/icons-material/Swipe';
+import SwipeIcon from "@mui/icons-material/Swipe";
+import { useSpring, animated } from "react-spring";
 
 const ProjectCard = ({ project, style }) => {
   const theme = useTheme();
@@ -39,74 +40,75 @@ const ProjectCard = ({ project, style }) => {
   };`;
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: "600px",
-        margin: "16px 0",
-        borderRadius: "8px",
-        overflow: "hidden",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        border: `1px solid ${theme.palette.primary.main}`,
-        transition: "transform 0.5s ease-in-out",
-        ...style,
-      }}
-    >
+    <animated.div style={style}>
       <Box
         sx={{
-          backgroundColor: isDarkMode ? "#1e1e1e" : "#f1f1f1",
-          padding: "8px 16px",
-          borderBottom: `1px solid ${isDarkMode ? "#30363d" : "#e1e4e8"}`,
-          display: "flex",
-          alignItems: "center",
+          width: "100%",
+          maxWidth: "600px",
+          margin: "16px 0",
+          borderRadius: "8px",
+          overflow: "hidden",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          border: `1px solid ${theme.palette.primary.main}`,
+          transition: "transform 0.5s ease-in-out",
         }}
       >
         <Box
           sx={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: "#ff5f56",
-            marginRight: "6px",
-          }}
-        />
-        <Box
-          sx={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: "#ffbd2e",
-            marginRight: "6px",
-          }}
-        />
-        <Box
-          sx={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: "#27c93f",
-            marginRight: "16px",
-          }}
-        />
-        <Box
-          component="span"
-          sx={{
-            color: isDarkMode ? "#4fd1c5" : "#0366d6",
-            fontFamily: "monospace",
-            fontSize: "14px",
+            backgroundColor: isDarkMode ? "#1e1e1e" : "#f1f1f1",
+            padding: "8px 16px",
+            borderBottom: `1px solid ${isDarkMode ? "#30363d" : "#e1e4e8"}`,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          {project.name}
+          <Box
+            sx={{
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: "#ff5f56",
+              marginRight: "6px",
+            }}
+          />
+          <Box
+            sx={{
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: "#ffbd2e",
+              marginRight: "6px",
+            }}
+          />
+          <Box
+            sx={{
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: "#27c93f",
+              marginRight: "16px",
+            }}
+          />
+          <Box
+            component="span"
+            sx={{
+              color: isDarkMode ? "#4fd1c5" : "#0366d6",
+              fontFamily: "monospace",
+              fontSize: "14px",
+            }}
+          >
+            {project.name}
+          </Box>
         </Box>
+        <SyntaxHighlighter
+          language="javascript"
+          style={customStyle}
+          wrapLongLines={true}
+        >
+          {projectCode}
+        </SyntaxHighlighter>
       </Box>
-      <SyntaxHighlighter
-        language="javascript"
-        style={customStyle}
-        wrapLongLines={true}
-      >
-        {projectCode}
-      </SyntaxHighlighter>
-    </Box>
+    </animated.div>
   );
 };
 
@@ -115,6 +117,7 @@ const Projects = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSwipeHint, setShowSwipeHint] = useState(false); // Estado para o tutorial
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     // Mostrar o tutorial por 3 segundos ao carregar em telas pequenas
@@ -127,13 +130,12 @@ const Projects = () => {
       }
     };
     handleResize(); // Verifica o tamanho ao carregar
-    window.addEventListener('resize', handleResize); // Reage a mudanças no tamanho
+    window.addEventListener("resize", handleResize); // Reage a mudanças no tamanho
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [theme.breakpoints.values.md]);
-
 
   const projectsData = [
     {
@@ -206,10 +208,12 @@ const Projects = () => {
   ];
 
   const handleNext = () => {
+    setDirection(-1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
   };
 
   const handlePrev = () => {
+    setDirection(1);
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
     );
@@ -218,6 +222,14 @@ const Projects = () => {
   const swipeHandlers = useSwipeable({
     onSwipedLeft: handleNext,
     onSwipedRight: handlePrev,
+  });
+
+  const slideAnimation = useSpring({
+    opacity: 1,
+    transform: "translateX(0%)",
+    from: { opacity: 0, transform: `translateX(${direction * 100}%)` },
+    reset: true,
+    config: { tension: 280, friction: 60 },
   });
 
   return (
@@ -243,7 +255,7 @@ const Projects = () => {
           sx={{
             position: "absolute",
             bottom: "10px",
-            display: { xs: 'flex', md: 'none' },
+            display: { xs: "flex", md: "none" },
             alignItems: "center",
             justifyContent: "center",
             bgcolor: theme.palette.background.paper,
@@ -253,7 +265,7 @@ const Projects = () => {
             border: `1px solid ${theme.palette.primary.main}`,
           }}
         >
-        <SwipeIcon sx={{ mr: 1 }} />
+          <SwipeIcon sx={{ mr: 1 }} />
         </Box>
       )}
       <Box
@@ -277,14 +289,16 @@ const Projects = () => {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
             display: { xs: "none", md: "flex" }, // Visível apenas a partir de md (desktop)
             border: `1px solid ${theme.palette.primary.main}`,
-
           }}
         >
           <ArrowBackIosIcon />
         </IconButton>
 
         {/* Componente do projeto */}
-        <ProjectCard project={projectsData[currentIndex]} />
+        <ProjectCard
+          project={projectsData[currentIndex]}
+          style={slideAnimation}
+        />
 
         {/* Botão para próximo, visível apenas no desktop */}
         <IconButton
@@ -298,7 +312,6 @@ const Projects = () => {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
             display: { xs: "none", md: "flex" }, // Visível apenas a partir de md (desktop)
             border: `1px solid ${theme.palette.primary.main}`,
-
           }}
         >
           <ArrowForwardIosIcon />

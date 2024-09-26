@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 const ThemeSwitcher = lazy(() => import("./components/Theme/ThemeSwitcher"));
@@ -15,7 +14,6 @@ const LoadingWalking = lazy(() =>
 );
 const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton"));
 const ExperienceCard = lazy(() => import("./components/Jobs/ExperienceCard"));
-const LottiCode = lazy(() => import("./components/Animation/LottiCode")); // Componente da animação
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -44,47 +42,35 @@ function App() {
   return (
     <Suspense fallback={<LoadingWalking />}>
       <ThemeSwitcher>
-        <Router basename="/">
-          <Routes>
-            {/* Rota principal do portfólio */}
-            <Route
-              path="/"
-              element={
-                <Box
-                  sx={{
-                    bgcolor: "background.default",
-                    minHeight: "100vh",
-                    color: "text.primary",
-                  }}
-                >
-                  <Sidebar />
-                  <section id="home">
-                    <CaioProfile />
-                  </section>
-                  <section id="sobre">
-                    <About />
-                  </section>
-                  <section id="habilidades">
-                    <Habilidades />
-                  </section>
-                  <section id="projetos">
-                    <Projects />
-                  </section>
-                  <section id="experiencias">
-                    <ExperienceCard />
-                  </section>
-                  <section id="contato">
-                    <Contact />
-                  </section>
+        <Box
+          sx={{
+            bgcolor: "background.default",
+            minHeight: "100vh",
+            color: "text.primary",
+          }}
+        >
+          <Sidebar />
+          <section id="home">
+            <CaioProfile />
+          </section>
+          <section id="sobre">
+            <About />
+          </section>
+          <section id="habilidades">
+            <Habilidades />
+          </section>
+          <section id="projetos">
+            <Projects />
+          </section>
+          <section id="experiencias">
+            <ExperienceCard />
+          </section>
+          <section id="contato">
+            <Contact />
+          </section>
 
-                  {showScrollButton && <ScrollToTopButton />}
-                </Box>
-              }
-            />
-            {/* Nova rota para a animação */}
-            <Route path="/animacao" element={<LottiCode />} />
-          </Routes>
-        </Router>
+          {showScrollButton && <ScrollToTopButton />}
+        </Box>
       </ThemeSwitcher>
     </Suspense>
   );
