@@ -1,4 +1,4 @@
-import{r as p,u as v,j as o}from"./vendor-rITzg0-C.js";import{b as h,u as w,B as s,k as m,q as y,I as u,r as S,t as j}from"./mui-DAOJslXP.js";import{d as b,s as g,h as D}from"./syntax-highlighter-DtqNj1FA.js";const R=({project:e,style:l})=>{const n=h(),a=n.palette.mode==="dark",i={...a?b:g,'pre[class*="language-"]':{...(a?b:g)['pre[class*="language-"]'],background:a?"#0d1117":"#f6f8fa",margin:0,padding:"16px",borderRadius:"0 0 8px 8px"}},d=`const Projeto = {
+import{r as p,u as v,j as o}from"./vendor-BdggnF_2.js";import{b as h,u as w,B as s,k as m,q as y,I as u,r as S,t as j}from"./mui-fxIhjsCt.js";import{d as b,s as g,h as D}from"./syntax-highlighter-CWpLpyar.js";const R=({project:e,style:l})=>{const n=h(),a=n.palette.mode==="dark",i={...a?b:g,'pre[class*="language-"]':{...(a?b:g)['pre[class*="language-"]'],background:a?"#0d1117":"#f6f8fa",margin:0,padding:"16px",borderRadius:"0 0 8px 8px"}},d=`const Projeto = {
     Nome: '${e.name}',
     Ferramentas: [${e.tools.map(r=>`'${r}'`).join(", ")}],
     Função: '${e.myRole}',
