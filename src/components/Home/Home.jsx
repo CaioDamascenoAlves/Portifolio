@@ -19,6 +19,7 @@ import {
   dracula,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useTheme } from "@mui/material/styles";
+import  DownloadButton  from '../Download/DownloadButton';
 
 const ColoredTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
@@ -214,11 +215,7 @@ const CaioProfile = () => {
                 ENTRE EM CONTATO
               </Button>
             </a>
-            <a href="Profile.pdf" download>
-              <Button variant="contained" color="primary">
-                BAIXAR CURRÍCULO
-              </Button>
-            </a>
+            <DownloadButton />
           </Box>
         </Box>
       </Container>
