@@ -5,6 +5,9 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [react(), svgr()],
+  server: {
+    port: 3005,
+  },
   base: "/Portifolio/",
   build: {
     rollupOptions: {
