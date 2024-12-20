@@ -48,8 +48,10 @@ const ContactMe = () => {
     // Simula um atraso de pelo menos 3 segundos para exibir o spinner
     setTimeout(() => setTimeElapsed(true), 3000);
 
+    const FORMSPREE_URL = 'https://formspree.io/f/xpwagyad'
+
     try {
-      const response = await fetch(import.meta.env.VITE_FORMSPREE_URL, {
+      const response = await fetch(FORMSPREE_URL, {
         method: "POST",
         body: data,
         headers: {
